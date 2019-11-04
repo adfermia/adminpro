@@ -1,1 +1,77 @@
-<p>graficas1 works!</p>
+<div class="row">
+        <div class="col-6">
+              <div class="card">
+                    <div class="card-body">
+
+                        <div>
+                            <div>
+                              <div style="display: block">
+                                <canvas baseChart
+                                  [data]="doughnutChartData"
+                                  [labels]="doughnutChartLabels"
+                                  [chartType]="doughnutChartType">
+                                </canvas>
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                </div>
+          </div>
+          <div class="col-6">
+              <div class="card">
+                    <div class="card-body">
+
+                        <div>
+                            <div>
+                              <div style="display: block">
+                                <canvas baseChart
+                                  [data]="votaran"
+                                  [labels]="labelVotar"
+                                  [chartType]="doughnutChartType">
+                                </canvas>
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                </div>
+          </div>
+          <div class="col-6">
+              <div class="card">
+                    <div class="card-body">
+
+                        <div>
+                            <div>
+                              <div style="display: block">
+                                <canvas baseChart
+                                  [data]="pacto"
+                                  [labels]="habraPacto"
+                                  [chartType]="doughnutChartType">
+                                </canvas>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+          </div>
+          <div class="col-6">
+              <div class="card">
+                    <div class="card-body">
+
+                        <div>
+                            <div>
+                              <div style="display: block">
+                                <canvas baseChart
+                                  [data]="puntuaciones"
+                                  [labels]="labelCandidatos"
+                                  [chartType]="doughnutChartType">
+                                </canvas>
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                </div>
+          </div>
+  </div>

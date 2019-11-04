@@ -1,3 +1,8 @@
+
+// En este archivo configuramos las rutas de nuestro proyecto, parece simple i con poco codigo pero esto
+// se debe a que hemos implementado nuestras propias rutas en otros modulos para permitir asi
+// un orden en nuestro programa i simplificar nuestro codigo.
+
 import { Routes, RouterModule } from '@angular/router';
 
 import { PagesComponent } from './pages.component';
