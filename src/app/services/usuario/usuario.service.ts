@@ -18,7 +18,7 @@ export class UsuarioService {
 
   constructor( public http: HttpClient, public router: Router, public subirArchivoService: SubirArchivoService) {
 
-    console.log('Servicio de usuario listo');
+
     this.cargarStorage();
    }
 
@@ -56,7 +56,7 @@ export class UsuarioService {
    loginGoogle( token: string) {
 
     let url = URL_SERVICIOS + '/login/google';
-    return this.http.post(url, { token}).pipe(
+    return this.http.post('http://localhost:3000/login/google', { token}).pipe(
       map((resp: any) => {
         this.guardarStorage( resp.id, resp.token, resp.usuario);
       }) );
@@ -103,9 +103,12 @@ export class UsuarioService {
 
      return this.http.put(url, usuario).pipe(
        map((resp: any) => {
-          let usuarioDB: Usuario = resp.usuario;
-          // this.usuario = resp.usuario;
-          this.guardarStorage(usuarioDB.id, this.token, usuarioDB);
+          if (usuario['_id'] === this.usuario['_id']) {
+            let usuarioDB: Usuario = resp.usuario;
+            // this.usuario = resp.usuario;
+            this.guardarStorage(usuarioDB.id, this.token, usuarioDB);
+
+          }
           swal('Usuario actualizado', usuario.nombre, 'success');
           return true;
        })
@@ -124,5 +127,38 @@ export class UsuarioService {
       .catch( resp => {
         console.log(resp);
       });
+   }
+
+   cargarUsuarios( desde: number = 0) {
+     let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+
+     return this.http.get(url);
+   }
+
+   buscarUsuarios( termino: string) {
+    let url= URL_SERVICIOS + '/busqueda/coleccion/usuario/' + termino;
+
+    console.log(url);
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+
+
+        return resp.usuario;
+
+      }
+      )
+    );
+   }
+   borrarUsuario( id: string) {
+
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete(url)
+    .pipe(map( resp => {
+      swal('Usuario borrado', 'El usuario ha sido eliminado correctamente', 'success');
+      return true;
+    }));
+
    }
 }

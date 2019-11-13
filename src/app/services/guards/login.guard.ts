@@ -13,12 +13,13 @@ export class LoginGuard implements CanActivate {
   canActivate(): boolean {
 
     if (this.usuarioService.estaLogeado() ) {
-      console.log('Paso el guard');
       return true;
     } else {
 
       console.log('Bloqueado por el guard');
       this.router.navigate(['/login']);
+      localStorage.clear();
+      sessionStorage.clear();
       return false;
     }
 
